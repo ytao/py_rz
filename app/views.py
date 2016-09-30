@@ -25,6 +25,12 @@ def index():
     return render_template('index.html',form=form)
 
 
+@app.route('/showchart', methods = ['GET', 'POST'])
+@login_required
+def showchart():
+    data = {'Chrome': 52.9, 'Opera': 1.6, 'Firefox': 27.7,'特殊工程':55}
+    return render_template('showchart.html',data=data)
+
 @app.route('/showlist', methods = ['GET', 'POST'])
 @login_required
 def showlist():
