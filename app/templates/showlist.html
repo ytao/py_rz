@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block header %} 记录列表 {% endblock %}
+{% block body %}
+<table id="grid_id" style="font-size:small" width="100%" class="display cell-border compact hover order-column ">
+	<thead>
+		<tr>
+			<th><strong>时间</strong></th>
+			<th><strong>内容</strong></th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for item in list %}
+		<tr>
+			<td>{{item}} </td>
+			<td>{{data[item]}} </td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<script>
+	$("#grid_id").DataTable();
+</script>
+{% endblock %}

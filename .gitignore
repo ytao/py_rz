@@ -1,0 +1,6 @@
+instance/
+lib
+__pycache__
+pip-selfcheck.json
+requirements.txt
+var
