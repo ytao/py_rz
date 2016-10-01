@@ -18,18 +18,18 @@
 	<body>
 		<div id="header">
 			<nav class="nav navbar-inverse navbar-static-top" style="background-color:#336633;" role="tablist">
-				<a class="navbar-brand" href="/">新增</a> 
-				<a class="navbar-brand" href="/showlist">查看所有</a> 
-				{% if not current_user.is_authenticated %} 
-				<a class="navbar-brand" href="/login">登录</a> 
-				{% else %}
-				<a class="navbar-brand" href="/showchart">查看图表</a> 
-				<a class="navbar-brand" href="/logout">退出{% if current_user.is_authenticated %} {{ current_user.name  }} {% endif %}</a> 
-				{% endif %}
+			<a class="navbar-brand" href="/">新增</a> 
+			<a class="navbar-brand" href="/showlist">查看所有</a> 
+			{% if not current_user.is_authenticated %} 
+			<a class="navbar-brand" href="/login">登录</a> 
+			{% else %}
+			<a class="navbar-brand" href="/showchart">查看图表</a> 
+			<a class="navbar-brand" href="/logout">退出{% if current_user.is_authenticated %} {{ current_user.name  }} {% endif %}</a> 
+			{% endif %}
 			</nav>
 			<div class="container-fluid">
 				<div class="row-fluid span12">
-			<legend>{% block header %} {% endblock %} </legend>
+					<legend>{% block header %} {% endblock %} </legend>
 				</div>
 			</div>
 		</div>
@@ -45,13 +45,16 @@
 		</div>
 
 		<div id="footer">
-			{% for msg in get_flashed_messages() %}
-			<div class="alert alert-danger alert-dismissible" role="alert">
-				<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				{{ msg }}
+			<div class="container-fluid">
+				<div class="row-fluid span12">
+					{% for msg in get_flashed_messages() %}
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						{{ msg }}
+					</div>
+					{% endfor %}
+				</div>
 			</div>
-			{% endfor %}
-			<!-- {% if current_user.is_authenticated %} 用户: {{ current_user.name }} {% endif %} -->
 		</div>
 
 	</body>
