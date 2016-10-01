@@ -51,6 +51,7 @@
 				{{ msg }}
 			</div>
 			{% endfor %}
+			{% if current_user.is_authenticated %}用户:{{ current_user.name }}{% endif %}
 		</div>
 
 	</body>
