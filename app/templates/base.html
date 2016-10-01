@@ -23,7 +23,7 @@
 				{% if not current_user.is_authenticated %} 
 				<a class="navbar-brand" href="/login">登录</a> 
 				{% else %}
-				<a class="navbar-brand" href="/showchart">查看chart{% if current_user.is_authenticated %} {{ current_user.name  }} {% endif %}</a> 
+				<a class="navbar-brand" href="/showchart">查看图表</a> 
 				<a class="navbar-brand" href="/logout">退出{% if current_user.is_authenticated %} {{ current_user.name  }} {% endif %}</a> 
 				{% endif %}
 			</nav>
