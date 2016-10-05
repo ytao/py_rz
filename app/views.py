@@ -35,7 +35,7 @@ def showchart():
     for i in users:
         mlist.append(i.date)
         mstr[i.date]=len(i.text)
-        timeArray = time.strptime(i.date, "%Y-%m-%d %H:%M:%S")
+        timeArray = time.strptime(i.date, "%Y-%m-%d %H:%M")
     mlist.reverse()
     data = mstr
     # data = {'Chrome': 52.9, 'Opera': 1.6, 'Firefox': 27.7,'特殊工程':55}
