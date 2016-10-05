@@ -36,7 +36,7 @@ def showchart():
         mlist.append(i.date)
         mstr[i.date]=i.text
     mlist.reverse()
-    flash(mlist.items())
+    flash(str(mlist.items()))
     # data = mlist
     data = {'Chrome': 52.9, 'Opera': 1.6, 'Firefox': 27.7,'特殊工程':55}
     return render_template('showchart.html',data=data)
