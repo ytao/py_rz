@@ -36,9 +36,9 @@ def showchart():
         mlist.append(i.date)
         mstr[i.date]=i.text
     mlist.reverse()
-    data = mstr
+    # data = mstr
     flash(mstr.keys())
-    # data = {'Chrome': 52.9, 'Opera': 1.6, 'Firefox': 27.7,'特殊工程':55}
+    data = {'Chrome': 52.9, 'Opera': 1.6, 'Firefox': 27.7,'特殊工程':55}
     return render_template('showchart.html',data=data)
 
 @app.route('/showlist', methods = ['GET', 'POST'])
