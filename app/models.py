@@ -15,7 +15,7 @@ def load_user(userid):
     return Admin.query.get(int(userid))
     # return Admin.query.filter(Admin.id==userid).first()
 
-class User(db.Model):
+class Records(db.Model):
     __tablename__ = 'main'
     # id   =db.Column(db.Integer, primary_key=True)
     date =db.Column(db.TEXT,primary_key=True, unique=False)

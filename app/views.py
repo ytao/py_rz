@@ -7,7 +7,7 @@ from flask_login import login_required, current_user, LoginManager, login_user, 
 from app import app
 from app.forms import UsernamePasswordForm,RecordForm
 from . import db
-from app.models import User,Admin
+from app.models import Records,Admin
 
 
 
@@ -17,8 +17,8 @@ def index():
     form = RecordForm()
     form.time.data=mtime
     if form.validate_on_submit():
-        admin=User(form.time.data,form.record.data)
-        db.session.add(admin)
+        myRecord=Records(form.time.data,form.record.data)
+        db.session.add(myRecord)
         db.session.commit()
         # return redirect(url_for('success'))
         return render_template('success.html')
@@ -29,12 +29,13 @@ def index():
 @login_required
 def showchart():
     '''按照要求显示图表'''
-    users=User.query.all()
+    users=Records.query.all()
     mstr={}
     mlist=[]
     for i in users:
         mlist.append(i.date)
-        mstr[i.date]=i.text
+        mstr[i.date]=len(i.text)
+        timeArray = time.strptime(i.date, "%Y-%m-%d %H:%M:%S")
     mlist.reverse()
     data = mstr
     # data = {'Chrome': 52.9, 'Opera': 1.6, 'Firefox': 27.7,'特殊工程':55}
@@ -43,7 +44,7 @@ def showchart():
 @app.route('/showlist', methods = ['GET', 'POST'])
 @login_required
 def showlist():
-    users=User.query.all()
+    users=Records.query.all()
     mstr={}
     mlist=[]
     for i in users:
