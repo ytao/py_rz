@@ -28,7 +28,16 @@ def index():
 @app.route('/showchart', methods = ['GET', 'POST'])
 @login_required
 def showchart():
-    data = {'Chrome': 52.9, 'Opera': 1.6, 'Firefox': 27.7,'特殊工程':55}
+    '''按照要求显示图表'''
+    users=User.query.all()
+    mstr={}
+    mlist=[]
+    for i in users:
+        mlist.append(i.date)
+        mstr[i.date]=i.text
+    mlist.reverse()
+    data = mlist
+    # data = {'Chrome': 52.9, 'Opera': 1.6, 'Firefox': 27.7,'特殊工程':55}
     return render_template('showchart.html',data=data)
 
 @app.route('/showlist', methods = ['GET', 'POST'])
