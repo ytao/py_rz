@@ -17,15 +17,17 @@
 	</head>
 	<body>
 		<div id="header">
-			<nav class="nav navbar-inverse navbar-static-top" style="background-color:#336633;" role="tablist">
-			<a class="navbar-brand" href="/">新增</a> 
-			<a class="navbar-brand" href="/showlist">查看所有</a> 
-			{% if not current_user.is_authenticated %} 
-			<a class="navbar-brand" href="/login">登录</a> 
-			{% else %}
-			<a class="navbar-brand" href="/showchart">查看图表</a> 
-			<a class="navbar-brand" href="/logout">退出{% if current_user.is_authenticated %} {{ current_user.name  }} {% endif %}</a> 
-			{% endif %}
+			<nav class="nav navbar-inverse navbar-static-top" style="background-color:#336633;" >
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">新增</a> 
+				<a class="navbar-brand" href="/showlist">查看所有</a> 
+				{% if not current_user.is_authenticated %} 
+				<a class="navbar-brand" href="/login">登录</a> 
+				{% else %}
+				<a class="navbar-brand" href="/showchart">查看图表</a> 
+				<a class="navbar-brand" href="/logout">退出{% if current_user.is_authenticated %} {{ current_user.name  }} {% endif %}</a> 
+				{% endif %}
+			</div>
 			</nav>
 			<div class="container-fluid">
 				<div class="row-fluid span12">
