@@ -29,25 +29,26 @@ def index():
 @login_required
 def showchart():
     '''按照要求显示图表'''
-    users=Records.query.all()
+    rs=Records.query.all()
     mstr={}
     mlist=[]
-    for i in users:
+    for i in rs:
         mlist.append(i.date)
         mstr[i.date]=len(i.text)
         timeArray = time.strptime(i.date, "%Y-%m-%d %H:%M")
     mlist.reverse()
     data = mstr
+    # return str(data)
     # data = {'Chrome': 52.9, 'Opera': 1.6, 'Firefox': 27.7,'特殊工程':55}
     return render_template('showchart.html',data=data)
 
 @app.route('/showlist', methods = ['GET', 'POST'])
 @login_required
 def showlist():
-    users=Records.query.all()
+    rs=Records.query.all()
     mstr={}
     mlist=[]
-    for i in users:
+    for i in rs:
         mlist.append(i.date)
         mstr[i.date]=i.text
     mlist.reverse()
