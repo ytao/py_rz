@@ -10,3 +10,4 @@ pip-selfcheck.json
 requirements.txt
 var
 *.swp
+*.pyc
