@@ -38,9 +38,10 @@ def showchart():
         timeArray = time.strptime(i.date, "%Y-%m-%d %H:%M")
     mlist.reverse()
     data = mstr
+    mlib={'title':'title1','subtitle':'title2'}
     # return str(data)
     # data = {'Chrome': 52.9, 'Opera': 1.6, 'Firefox': 27.7,'特殊工程':55}
-    return render_template('showchart.html',data=data)
+    return render_template('showchart.html',data=data,mlib=mlib)
 
 @app.route('/showlist', methods = ['GET', 'POST'])
 @login_required
