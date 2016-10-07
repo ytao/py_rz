@@ -1,6 +1,11 @@
 instance/
-lib
-__pycache__
+instance_/
+info/
+bin/
+hooks/
+tool/
+lib/
+__pycache__/
 pip-selfcheck.json
 requirements.txt
 var
