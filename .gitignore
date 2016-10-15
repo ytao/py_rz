@@ -1,10 +1,10 @@
 instance/
 instance_/
-info/
-bin/
-hooks/
-tool/
-lib/
+info
+bin
+hooks
+tool
+lib
 __pycache__/
 pip-selfcheck.json
 requirements.txt
