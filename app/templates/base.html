@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<!-- 这三个必须放在前面 -->
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="static/jquery/jquery.js"></script>
+
+		<link href="static/bootstrap/css/bootstrap.min.paper.css" rel="stylesheet">
+		<script src="static/bootstrap/js/bootstrap.min.js"></script>
+
+		<link rel="stylesheet" href="static/jquery-dataTable/jquery.dataTables.min.css">
+		<script src="static/jquery-dataTable/jquery.dataTables.min.js"></script>
+
+		<link rel="shortcut icon" href="static/favicon.ico">
+
+		<script src="static/chart/highcharts.js"></script>
+		<!-- <script src="static/chart/Chart.js"></script> -->
+		<script src="static/chart/chartkick.js"></script>
+
+
+		<title>yt_rz.testing</title>
+	</head>
+	<body>
+		<div id="header">
+			<nav class="navbar navbar-inverse navbar-static-top" style="background-color:#336633;" >
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">新增</a> 
+				<a class="navbar-brand" href="/showlist">列表</a> 
+				<a class="navbar-brand" href="/showchart">图表</a> 
+				{% if not current_user.is_authenticated %} 
+				<a class="navbar-brand" href="/login">登录</a> 
+				{% else %}
+				<a class="navbar-brand" href="/logout">退出{% if current_user.is_authenticated %} {{ current_user.name  }} {% endif %}</a> 
+				{% endif %}
+			</div>
+			</nav>
+			<div class="container-fluid">
+				<div class="row-fluid span12">
+					<legend>{% block header %} {% endblock %} </legend>
+				</div>
+			</div>
+		</div>
+
+		<div id="main">
+			<div class="container-fluid">
+				<div class="row-fluid span12">
+					{% block body %}
+					{% endblock %}
+					<br />
+				</div>
+			</div>
+		</div>
+
+		<div id="footer">
+			<div class="container-fluid">
+				<div class="row-fluid span12">
+					{% for msg in get_flashed_messages() %}
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						{{ msg }}
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>
+<!-- vim:set ts=2 shiftwidth=2: -->
