@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block header %} 新建记录 {% endblock %}
+{% block body %}
+<form action="" method="post" name="index">
+	{{form.hidden_tag()}}
+	<div class="input-group">
+		<span class="input-group-addon not_hidden" >时间</span>
+		{{form.time(class="form-control")}}
+	</div>
+	<div class="input-group">
+		<span class="input-group-addon" >内容</span>
+		{{form.record(class="form-control",rows="4")}}
+	</div>
+	<br />
+	<input class="btn btn-block btn-primary btn-lg" type="submit" value="提交">
+	<!-- {{ form.csrf_token }} -->
+</form>
+{% endblock %}
