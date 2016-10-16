@@ -18,7 +18,10 @@
 		<script src="static/chart/highcharts.js"></script>
 		<!-- <script src="static/chart/Chart.js"></script> -->
 		<script src="static/chart/chartkick.js"></script>
-
+		<style type="text/css">
+			.navbar-brand
+			{font-size:18px;}
+		</style>
 
 		<title>yt_rz.testing</title>
 	</head>
@@ -26,13 +29,14 @@
 		<div id="header">
 			<nav class="navbar navbar-inverse navbar-static-top" style="background-color:#336633;" >
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/">新增</a> 
+				<a class="navbar-brand" href="/">增加</a> 
 				<a class="navbar-brand" href="/showlist">列表</a> 
 				<a class="navbar-brand" href="/showchart">图表</a> 
 				{% if not current_user.is_authenticated %} 
 				<a class="navbar-brand" href="/login">登录</a> 
 				{% else %}
-				<a class="navbar-brand" href="/logout">退出{% if current_user.is_authenticated %} {{ current_user.name  }} {% endif %}</a> 
+				<a class="navbar-brand" href="/rzContent">要点</a> 
+				<a class="navbar-brand" href="/logout">登出</a> 
 				{% endif %}
 			</div>
 			</nav>
@@ -65,7 +69,7 @@
 				</div>
 			</div>
 		</div>
-
 	</body>
 </html>
 <!-- vim:set ts=2 shiftwidth=2: -->
+

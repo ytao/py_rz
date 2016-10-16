@@ -67,6 +67,11 @@ def login():
         flash('用户名或密码错误')
     return render_template('login.html', form = form)
 
+@app.route("/rzContent")
+@login_required
+def rzContent():
+    return render_template('rzContent.html')
+
 @app.route("/logout")
 @login_required
 def logout():
