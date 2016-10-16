@@ -52,7 +52,6 @@ def showlist():
     for i in rs:
         mlist.append(i.date)
         mstr[i.date]=i.text
-    mlist.reverse()
     return render_template('showlist.html',list=mlist,data=mstr )
 
 @app.route('/login', methods = ['GET', 'POST'])

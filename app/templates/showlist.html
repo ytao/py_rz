@@ -19,6 +19,10 @@
 	</tbody>
 </table>
 <script>
-	$("#grid_id").DataTable();
+	var tbl=$("#grid_id").DataTable(
+	{
+		"order":[0,'0']
+	}
+	);
 </script>
 {% endblock %}
