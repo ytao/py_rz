@@ -4,6 +4,6 @@
 
 
 <!-- {% line_chart data with library={ 'yAxis':{'title':'ok'},'title':{'display': 'true', 'text': '每次记录字数'}} %} -->
-{% line_chart data with library={ 'xAxis':{'reversed':'true','title':'ok'},'title':{'display': 'true', 'text': '每次记录字数'}} %}
+{% pie_chart data with library={ 'yAxis':{'title':{'text':'字数'}},'xAxis':{'title':{'text':'每天记录字数'}},'title':{'display': 'true', 'text': '每天记录字数'}} %}
 <!-- {% bar_chart data with library={ 'title':{'display': 'true', 'text': '每次记录字数'}} %} -->
 {% endblock %}

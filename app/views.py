@@ -25,7 +25,7 @@ def index():
     return render_template('index.html',form=form)
 
 
-@app.route('/showchart', methods = ['GET', 'POST'])
+@app.route('/showchart')
 @login_required
 def showchart():
     '''按照要求显示图表'''
@@ -33,10 +33,9 @@ def showchart():
     mstr={}
     mstr2={}
     for i in rs:
-        timeArray = time.strftime("%Y年%m月%d日",time.strptime(i.date, "%Y-%m-%d %H:%M"))
+        timeArray = time.strftime("%Y-%m-%d",time.strptime(i.date, "%Y-%m-%d %H:%M"))
         mstr[timeArray]=len(i.text)
         if timeArray in mstr2:
-        # if mstr2.has_key(timeArray)==True :
             mstr2[timeArray]=mstr2[timeArray] + mstr[timeArray]
         else:
             mstr2[timeArray]= mstr[timeArray]
