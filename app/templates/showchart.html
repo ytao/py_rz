@@ -2,8 +2,81 @@
 {% block header %}{% endblock %}
 {% block body %}
 
+<!--  pie_chart data with library={ 'yAxis':{'title':{'text':'字数'}},'xAxis':{'title':{'text':'每天记录字数'}},'title':{'display': 'true', 'text': '每天记录字数'}}  -->
 
-<!-- {% line_chart data with library={ 'yAxis':{'title':'ok'},'title':{'display': 'true', 'text': '每次记录字数'}} %} -->
-{% pie_chart data with library={ 'yAxis':{'title':{'text':'字数'}},'xAxis':{'title':{'text':'每天记录字数'}},'title':{'display': 'true', 'text': '每天记录字数'}} %}
-<!-- {% bar_chart data with library={ 'title':{'display': 'true', 'text': '每次记录字数'}} %} -->
+
+<div id="chart-5" style="height: 300px; text-align: center; color: #999;
+	line-height: 300px; font-size: 14px;
+	font-family: Lucida Grande, Lucida Sans Unicode,
+	Verdana, Arial, Helvetica, sans-serif;">
+	Loading...
+</div>
+
+<div id="chart-6" style="height: 300px; text-align: center; color: #999;
+	line-height: 300px; font-size: 14px;
+	font-family: Lucida Grande, Lucida Sans Unicode,
+	Verdana, Arial, Helvetica, sans-serif;">
+	Loading...
+</div>
+
+<script>
+	//<![CDATA[
+	new Chartkick.PieChart (document.getElementById("chart-5"), 
+	{
+		{% for item in list %}
+		'{{item}}': {{data[item]}},
+		{% endfor %}
+	},
+	{
+		"library": {
+			"yAxis": {
+				"title": {
+					"text": "\u5b57\u6570"
+				}
+			},
+			"title": {
+				"text": "\u6bcf\u5929\u8bb0\u5f55\u5b57\u6570",
+				"display": "true"
+			},
+			"xAxis": {
+				"title": {
+					"text": "\u6bcf\u5929\u8bb0\u5f55\u5b57\u6570"
+				}
+			}
+		}
+	}
+	);
+	//]]>
+</script>
+
+<script>
+	//<![CDATA[
+	new Chartkick.ColumnChart (document.getElementById("chart-6"), 
+	{
+		{% for item in list %}
+		'{{item}}': {{data[item]}},
+		{% endfor %}
+	},
+	{
+		"library": {
+			"yAxis": {
+				"title": {
+					"text": "\u5b57\u6570"
+				}
+			},
+			"title": {
+				"text": "\u6bcf\u5929\u8bb0\u5f55\u5b57\u6570",
+				"display": "true"
+			},
+			"xAxis": {
+				"title": {
+					"text": "\u6bcf\u5929\u8bb0\u5f55\u5b57\u6570"
+				}
+			}
+		}
+	}
+	);
+	//]]>
+</script>
+
 {% endblock %}
