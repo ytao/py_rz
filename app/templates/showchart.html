@@ -3,6 +3,7 @@
 {% block body %}
 
 
-{% column_chart data with library={ 'title':{'display': 'true', 'text': '每次记录字数'}} %}
+{% line_chart data with library={ 'yAxis':{'title':'ok'},'title':{'display': 'true', 'text': '每次记录字数'}} %}
+<!-- {% column_chart data with library={ 'yAxis':{'reversed':'false','title':'ok'},'title':{'display': 'true', 'text': '每次记录字数'}} %} -->
 <!-- {% bar_chart data with library={ 'title':{'display': 'true', 'text': '每次记录字数'}} %} -->
 {% endblock %}
