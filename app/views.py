@@ -36,13 +36,15 @@ def showchart():
     for i in rs:
         timeArray = time.strftime("%Y-%m-%d",time.strptime(i.date, "%Y-%m-%d %H:%M"))
         mstr[timeArray]=len(i.text)
-        mlist.append(timeArray)
+        if not timeArray in mlist:
+            mlist.append(timeArray)
         if timeArray in mstr2:
             mstr2[timeArray]=mstr2[timeArray] + mstr[timeArray]
         else:
             mstr2[timeArray]= mstr[timeArray]
     data = mstr2
     mlist.sort()
+    print(mlist)
     return render_template('showchart.html',data=data,list=mlist)
 
 @app.route('/showlist', methods = ['GET', 'POST'])
