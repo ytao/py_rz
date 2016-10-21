@@ -22,12 +22,11 @@
 			.navbar-brand
 			{font-size:18px;}
 		</style>
-
-		<title>yt_rz.testing</title>
+		<title>低头耕地，抬头看天！</title>
 	</head>
 	<body>
 		<div id="header">
-			<nav class="navbar navbar-inverse navbar-static-top" style="background-color:#336633;" >
+			<nav id="nav" class="navbar navbar-inverse navbar-static-top">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="/">增加</a> 
 				<a class="navbar-brand" href="/showlist">列表</a> 
@@ -78,6 +77,33 @@
 			</div>
 		</div>
 	</body>
+	<script>
+		var d=new Date().getDay();
+		switch (d)
+		{
+			case 0:
+				$("#nav").css("background-color","#003366")
+				break;
+			case 1:
+				$("#nav").css("background-color","#336633")
+				break;
+			case 2:
+				$("#nav").css("background-color","#000000")
+				break;
+			case 3:
+				$("#nav").css("background-color","#0066cc")
+				break;
+			case 4:
+				$("#nav").css("background-color","#6699cc")
+				break;
+			case 5:
+				$("#nav").css("background-color","#333333")
+				break;
+			case 6:
+				$("#nav").css("background-color","#ff9900")
+				break;
+		}
+	</script>
 </html>
 <!-- vim:set ts=2 shiftwidth=2: -->
 
