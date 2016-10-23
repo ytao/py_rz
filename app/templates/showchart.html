@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-{% block header %}{% endblock %}
-{% block body %}
+{% block header %}{% endblock %} {% block body %}
 
 <!--  pie_chart data with library={ 'yAxis':{'title':{'text':'字数'}},'xAxis':{'title':{'text':'每天记录字数'}},'title':{'display': 'true', 'text': '每天记录字数'}}  -->
 
@@ -40,34 +39,10 @@
 </div>
 
 <script>
-	//<![CDATA[
-	new Chartkick.ColumnChart (document.getElementById("chart1"), 
-	{
-		{% for item in list %} '{{item}}': {{data[item]}}, {% endfor %}
-	},
-	{
-		"library": {
-			"yAxis": {
-				"title": {
-					"text": "每日字数"
-				}
-			},
-			"title": {
-				"text": "每日记录字数柱状图",
-				"display": "true"
-			}
-		}
-	}
-	);
-	//]]>
-</script>
-
-
-<script>
 	$(function () {
-		$('#chart2').highcharts({
+		$('#chart1').highcharts({
 			chart: {
-				type: 'pie'
+				type: 'column'
 			},
 			title: {
 				text: '每日记录字数饼图'
@@ -83,6 +58,11 @@
 					text: '每日字数'
 				}
 			},
+			xAxis:{
+				categories:[
+				{% for item in list %} '{{item}}', {% endfor %}
+				]
+			},
 			plotOptions: {
 				line: {
 					dataLabels: {
@@ -93,11 +73,51 @@
 			},
 			series: [{
 				name:'列表',
-				data:[ {% for item in list %} ['{{item}}', {{data[item]}}], {% endfor %} ],
+				data:[ {% for item in list %} {{data[item]}}, {% endfor %} ],
 				dataLabels: { 
 					enabled: true
 				}
 			}]
+		})
+	});
+</script>
+
+<script>
+	$(function () {
+		$('#chart2').highcharts({
+			title: {
+				text: '每日记录字数饼图'
+			},
+			credits: {
+				enabled: false
+			},
+			subtitle: {
+				text: '把每天的记录合并后列出来'
+			},
+			yAxis: {
+				title: {
+					text: '每日字数'
+				}
+			},
+			xAxis:{
+				categories:[
+				{% for item in list %} '{{item}}', {% endfor %}
+				]
+			},
+			plotOptions: {
+				line: {
+					dataLabels: { enabled: true },
+					enableMouseTracking: true
+				}
+			},
+			series: [ 
+			{
+				type:'pie',
+				name:'列表',
+				data:[ {% for item in list %} ["{{item}}" , {{data[item]}}], {% endfor %} ],
+				dataLabels: { enabled: true },
+			}
+			]
 		})
 	});
 </script>
