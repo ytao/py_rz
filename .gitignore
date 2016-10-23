@@ -4,7 +4,7 @@ bin
 hooks
 tool
 lib
-__pycache__/
+__pycache__
 pip-selfcheck.json
 requirements.txt
 var
