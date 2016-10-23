@@ -33,6 +33,13 @@
 				<a class="navbar-brand" href="/logout">登出 {% if current_user.is_authenticated %} {{current_user.name}} {% endif %} </a> 
 				{% endif %}
 			</div>
+			<script>
+				$(".navbar-brand").css("font-size","18px");
+				var d=new Date().getDay();
+				var a=new Array();
+				a=["#003366","#336633","#000000","#0066cc","#003399","#333333","#ff9900"];
+				$("#nav").css("background-color",a[d]);
+			</script>
 			</nav>
 			<div class="container-fluid">
 				<div class="row-fluid span12">
@@ -71,14 +78,6 @@
 			</div>
 		</div>
 	</body>
-	<script>
-		$(function(){
-		var d=new Date().getDay();
-		var a=new Array();
-		a=["#003366","#336633","#000000","#0066cc","#003399","#333333","#ff9900"]
-		$("#nav").css("background-color",a[d]);
-		});
-	</script>
 </html>
 <!-- vim:set ts=2 shiftwidth=2: -->
 
