@@ -9,10 +9,17 @@
 	</div>
 	<div class="input-group">
 		<span class="input-group-addon" >内容</span>
-		{{form.record(id="edt1",class="form-control",rows="3",placeholder="每日行程;工作反思;说话反思;做事反思;家人健康;个人提升。")}}
+		{{form.record(id="edt1",class="form-control",rows="3")}}
 	</div>
 	<br />
 	<input class="btn btn-block btn-primary btn-lg" type="submit" value="提交">
 	{{ form.csrf_token }}
 </form>
+{% if current_user.is_authenticated %} 
+<script>
+	$(function(){
+		$("#edt1").attr("placeholder","每日行程;工作反思;说话反思;做事反思;家人健康;个人提升。");
+	});
+</script>
+{% endif %}
 {% endblock %}
