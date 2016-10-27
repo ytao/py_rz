@@ -80,3 +80,14 @@ def rzContent():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+@app.route("/tree")
+@login_required
+def tree():
+    rs=Records.query.all()
+    mstr={}
+    mlist=[]
+    for i in rs:
+        mlist.append(i.date)
+        mstr[i.date]=i.text
+    return render_template('tree.html',list=mlist,data=mstr )
