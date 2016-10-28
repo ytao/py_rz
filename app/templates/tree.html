@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block header %} 增加记录 {% endblock %}
+{% block header %} 查看记录 {% endblock %}
 {% block body %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
@@ -8,16 +8,20 @@
 		$('#jstree_demo_div').jstree(); 
 		$('#jstree_demo_div').on("select_node.jstree", function (e, data) {
 			var l=data.node.text; 
-			alert(l);
+			$.get("myLog", {name:l}, function(data,status){ 
+				$("#logDate").text(data.substr(0,16));
+				$("#logText").text(data.substr(17));
+			});
 		});
 	});
 </script>
 <div class="container-fluid">
 	<div class="row-fluid">
-		<div class="col-md-10">
-			<textarea id="edt1" cols="30" rows="10"></textarea>
+		<div class="col-md-8">
+			<H3 id="logDate"></H3>
+			<p id="logText"></p>
 		</div>
-		<div class="col-md-2">
+		<div class="col-md-4">
 			<div id="jstree_demo_div">
 				<ul>
 					{% for item in list %}

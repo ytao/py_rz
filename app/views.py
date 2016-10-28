@@ -17,10 +17,10 @@ def index():
     form = RecordForm()
     form.time.data=mtime
     if form.validate_on_submit():
-        myRecord=Records(form.time.data,form.record.data)
+        mdate=form.time.data
+        myRecord=Records(mdate,form.record.data)
         db.session.add(myRecord)
         db.session.commit()
-        # return redirect(url_for('success'))
         return render_template('success.html')
     return render_template('index.html',form=form)
 
@@ -54,8 +54,9 @@ def showlist():
     mstr={}
     mlist=[]
     for i in rs:
-        mlist.append(i.date)
-        mstr[i.date]=i.text
+        timeStr=i.date.replace("+"," ")
+        mlist.append(timeStr)
+        mstr[timeStr]=i.text
     return render_template('showlist.html',list=mlist,data=mstr )
 
 @app.route('/login', methods = ['GET', 'POST'])
@@ -88,6 +89,23 @@ def tree():
     mstr={}
     mlist=[]
     for i in rs:
-        mlist.append(i.date)
-        mstr[i.date]=i.text
+        timeStr=i.date
+        mlist.append(timeStr)
+        mstr[timeStr]=i.text
     return render_template('tree.html',list=mlist,data=mstr )
+
+@app.route("/myLog")
+@login_required
+def myLog():
+    name = request.args.get('name')
+    print("name={"+name+"}")
+    name=name[0:16]
+    # name2=name[0:16].replace(" ","+")
+    # name = request.args.get('name').replace("%3A",":").replace(" ","+")
+    rs=Records.query.filter_by(date=name).first()
+    if rs == None:
+        return("没有找到内容！")
+    myStr=rs.date
+    print(myStr+" "+rs.text)
+    return myStr+" "+rs.text
+
