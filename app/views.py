@@ -92,7 +92,13 @@ def tree():
         timeStr=i.date
         mlist.append(timeStr)
         mstr[timeStr]=i.text
-    return render_template('tree.html',list=mlist,data=mstr )
+    form = RecordForm()
+    if form.validate_on_submit():
+        mdate=form.time.data
+        myRecord=Records(mdate,form.record.data)
+        db.session.add(myRecord)
+        db.session.commit()
+    return render_template('tree.html',form2=form,list=mlist,data=mstr )
 
 @app.route("/myLog")
 @login_required

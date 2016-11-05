@@ -3,33 +3,49 @@
 {% block body %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
-<script>
-	$(function () { 
-		$('#jstree_demo_div').jstree(); 
-		$('#jstree_demo_div').on("select_node.jstree", function (e, data) {
-			var l=data.node.text; 
-			$.get("myLog", {name:l}, function(data,status){ 
-				$("#logDate").text(data.substr(0,16));
-				$("#logText").text(data.substr(17));
-			});
-		});
-	});
-</script>
-<div class="container-fluid">
-	<div class="row-fluid">
-		<div class="col-md-8">
-			<H3 id="logDate"></H3>
-			<p id="logText"></p>
-		</div>
-		<div class="col-md-4">
-			<div id="jstree_demo_div">
-				<ul>
-					{% for item in list %}
-					<li>{{item}} </li>
-					{% endfor %}
-				</ul>
+<!-- <script> -->
+	<!-- 	$(function () { --> 
+	<!-- 		$('#jstree_demo_div').jstree(); --> 
+	<!-- 		$('#jstree_demo_div').on("select_node.jstree", function (e, data) { -->
+	<!-- 			var l=data.node.text; --> 
+	<!-- 			$.get("myLog", {name:l}, function(data,status){ --> 
+	<!-- 				$("#logDate").text(data.substr(0,16)); -->
+	<!-- 				$("#logText").text(data.substr(17)); -->
+	<!-- 			}); -->
+	<!-- 		}); -->
+	<!-- 	}); -->
+	<!-- </script> -->
+<div class="modal fade" id="mf" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
+				<h3 id="myModalLabel">内容修改</h3>
+			</div>
+			<div class="modal-body">
+				<form action="" method="post" name="tree">
+					{{form2.hidden_tag()}}
+					<div class="input-group">
+						<span class="input-group-addon not_hidden" >时间</span>
+						{{form2.time(class="form-control",id="form2-date")}}
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon" >内容</span>
+						{{form2.record(id="form2-edt",class="form-control",rows="3",placeholder="每日行程;工作反思;说话反思;做事反思;家人健康;个人提升。")}}
+					</div>
+					<br />
+					<input class="btn btn-block btn-primary btn-lg" type="submit" value="提交">
+					{{ form2.csrf_token }}
+				</form>
 			</div>
 		</div>
 	</div>
 </div>
+<button id="btn">button</button>
+<script>
+	$("#btn").click( function(){
+		$("#pp").text("okokok");
+		$("#mf").modal('show');
+	});
+</script>
+
 {% endblock %}
