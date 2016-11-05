@@ -57,7 +57,23 @@ def showlist():
         timeStr=i.date.replace("+"," ")
         mlist.append(timeStr)
         mstr[timeStr]=i.text
-    return render_template('showlist.html',list=mlist,data=mstr )
+    form = RecordForm()
+    if form.validate_on_submit():
+        mdate=form.time.data
+        rs=Records.query.filter_by(date=mdate).first()
+        if rs is not None:
+            rs.date=mdate
+            rs.text=form.record.data
+            db.session.commit()
+        else:
+            rs2=Records.query.filter_by(text=form.record.data).first()
+            if rs2 is not None:
+                rs2.date=mdate
+                rs2.text=form.record.data
+                db.session.commit()
+            else:
+                flash('日期和时间都对不上啊！')
+    return render_template('showlist.html',list=mlist,data=mstr ,form2=form)
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -81,18 +97,6 @@ def rzContent():
 def logout():
     logout_user()
     return redirect(url_for('index'))
-
-@app.route("/tree")
-@login_required
-def tree():
-    rs=Records.query.all()
-    mstr={}
-    mlist=[]
-    for i in rs:
-        timeStr=i.date
-        mlist.append(timeStr)
-        mstr[timeStr]=i.text
-    return render_template('tree.html',list=mlist,data=mstr )
 
 @app.route("/myLog")
 @login_required

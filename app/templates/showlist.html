@@ -18,10 +18,45 @@
 		{% endfor %}
 	</tbody>
 </table>
+
+<div class="modal fade" id="mf" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
+				<h3 id="myModalLabel">内容修改</h3>
+			</div>
+			<div class="modal-body">
+				<form action="" method="post" name="showlist">
+					{{form2.hidden_tag()}}
+					<div class="input-group">
+						<span class="input-group-addon not_hidden" >时间</span>
+						{{form2.time(class="form-control",id="form2-date")}}
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon" >内容</span>
+						{{form2.record(id="form2-edt",class="form-control",rows="3",placeholder="每日行程;工作反思;说话反思;做事反思;家人健康;个人提升。")}}
+					</div>
+					<br />
+					<input class="btn btn-block btn-primary btn-lg" type="submit" value="提交">
+					{{ form2.csrf_token }}
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
 <script>
 	$(function(){
 		var tbl=$("#grid_id").DataTable({
 			"order":[0,'0']
+		});
+		$('#grid_id tr').dblclick(function (){
+			var md=tbl.row(this).data();
+			$("#form2-date").attr('value',md[0]);
+			$("#form2-edt").text(md[1]);
+			$("#mf").modal('show');
+		});
+		$('#mf').on('hidden.bs.modal', function () {
+			tbl.draw();
 		})
 	});
 </script>
