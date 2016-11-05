@@ -49,7 +49,7 @@
 		var tbl=$("#grid_id").DataTable({
 			"order":[0,'0']
 		});
-		$('#grid_id tr').dblclick(function (){
+		$('#grid_id tbody').on('dblclick','tr',function (){
 			var md=tbl.row(this).data();
 			$("#form2-date").attr('value',md[0]);
 			$("#form2-edt").text(md[1]);
