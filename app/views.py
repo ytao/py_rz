@@ -15,10 +15,13 @@ from app.models import Records,Admin
 def index():
     mtime=str(time.strftime("%Y-%m-%d %H:%M", time.localtime()))
     form = RecordForm()
-    form.time.data=mtime
+    if request.method == 'GET':   # 这里必须要增加一个request的判断，否则form.time.data每次都会赋值错误
+        form.time.data=mtime
+    # form['time']=mtime
     if form.validate_on_submit():
         mdate=form.time.data
         myRecord=Records(mdate,form.record.data)
+        # myRecord=Records(form['time'],form['record'])
         db.session.add(myRecord)
         db.session.commit()
         return render_template('success.html')
